@@ -8,6 +8,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 
 int main(int argc, char const *argv[])
@@ -30,6 +33,33 @@ int main(int argc, char const *argv[])
 			if (dynamic_cast<Jugador*>(personas.at(i))!=NULL)
 			{
 				Jugador* apostador = dynamic_cast<Jugador*>(personas.at(i));
+				if (apostador->getNombre() == nombre && apostador->getID() == id)
+				{
+					bool continuar = true;
+					bool entra = false;
+					vector<carta*> jugar;
+					vector<carta*> repar;
+					mesa* actual;
+					for (int i = 0; i < mesas.size(); ++i)
+					{
+						if (mesas.at(i)->getJugador()->getNombre()==nombre && mesas.at(i)->getJugador()->getID()==id)
+						{
+							actual = mesas.at(i);
+							entra = true;
+						}
+					}
+					if (entra)
+					{
+						Repartidor* temre = actual->getRepartidor();
+						Jugador* temju = actual->getJugador();
+						while(continuar){
+							int cartatem;
+							srand (time(NULL));
+							cartatem = rand() % 52;
+						}	
+					}
+					
+				}
 			}
 		}
 		if (nombre == admin->getNombre() && admin->getID() == id)
