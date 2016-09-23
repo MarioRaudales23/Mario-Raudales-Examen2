@@ -52,10 +52,41 @@ int main(int argc, char const *argv[])
 					{
 						Repartidor* temre = actual->getRepartidor();
 						Jugador* temju = actual->getJugador();
+						baraja* baraja = temre->getBaraja();
+						int valorj,valorr;
+						int tama = 52;
 						while(continuar){
-							int cartatem;
-							srand (time(NULL));
-							cartatem = rand() % 52;
+							for (int i = 0; i < 2; ++i)
+							{
+								int cartatem;
+								srand (time(NULL));
+								cartatem = rand() % tama;
+								repar.push_back(baraja->getBaraja().at(cartatem));
+								baraja->getBaraja().erase(baraja->getBaraja().begin()+cartatem);
+								tama--;
+							}
+							for (int i = 0; i < repar.size(); ++i)
+							{
+								valorr += repar.at(i)->getValor();
+							}
+							cout<<repar.at(0)->toString()<<endl;
+							for (int i = 0; i < 2; ++i)
+							{
+								int cartatem;
+								srand (time(NULL));
+								cartatem = rand() % tama;
+								jugar.push_back(baraja->getBaraja().at(cartatem));
+								baraja->getBaraja().erase(baraja->getBaraja().begin()+cartatem);
+								tama--;
+							}
+							for (int i = 0; i < jugar.size(); ++i)
+							{
+								cout<<repar.at(i)->toString()<<endl;
+							}
+							for (int i = 0; i < jugar.size(); ++i)
+							{
+								valorj += jugar.at(i)->getValor();
+							}
 						}	
 					}
 					
