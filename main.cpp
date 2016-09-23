@@ -87,6 +87,26 @@ int main(int argc, char const *argv[])
 							{
 								valorj += jugar.at(i)->getValor();
 							}
+							if (valorr == 21)
+							{
+								/* code */
+							}
+							if (valorj == 21)
+							{
+								/* code */
+							}
+							if (valorr > 21 && valorj < 21)
+							{
+								
+							}
+							if (valorj > 21 && valorr < 21)
+							{
+								
+							}
+							if (valorj == 21 && valorr == 21)
+							{
+								/* code */
+							}
 						}	
 					}
 					
