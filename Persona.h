@@ -10,4 +10,7 @@ class Persona{
 		Persona();
 		Persona(string,int,string);
 		virtual ~Persona()=0;
+		string getNombre();
+		string getID();
+		virtual string toString();
 };

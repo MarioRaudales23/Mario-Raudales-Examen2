@@ -1,5 +1,6 @@
 #include "Jugador.h"
 #include <string>
+#include <sstream>
 using namespace std;
 
 Jugador::Jugador(){
@@ -14,4 +15,9 @@ Jugador::~Jugador(){
 }
 double Jugador::getMonto(){
 	return monto;
+}
+string Jugador::toString(){
+	stringstream ss;
+	ss<<Persona::toString()<<" Lugar: "<<lugar<<" Apodo: "<<apodo<<" Monto: "<<monto;
+	return ss.str();
 }

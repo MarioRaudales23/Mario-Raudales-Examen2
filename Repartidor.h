@@ -12,7 +12,8 @@ class Repartidor:public Persona{
 	public:
 		Repartidor();
 		~Repartidor();
-		Repartidor(string,double);
-		baraja getBaraja();
+		Repartidor(string,int,string,string,double);
+		baraja* getBaraja();
 		double getDinero();
+		string toString();
 };

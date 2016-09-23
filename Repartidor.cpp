@@ -1,5 +1,8 @@
-#include "Repartido.h"
-#include "baraja.j"
+#include "Repartidor.h"
+#include "baraja.h"
+#include <string>
+#include <sstream>
+using namespace std;
 
 Repartidor::Repartidor(){
 	
@@ -10,9 +13,14 @@ Repartidor::Repartidor(string nom,int eda,string num,string dific,double money):
 Repartidor::~Repartidor(){
 
 }
-baraja Repartidor::getBaraja(){
+baraja* Repartidor::getBaraja(){
 	return cartas;
 }
 double Repartidor::getDinero(){
-	return dinero
+	return dinero;
+}
+string Repartidor::toString(){
+	stringstream ss;
+	ss<<Persona::toString()<<" Dificultad: "<<dificultad<<" Dinero: "<<dinero;
+	return ss.str();
 }
