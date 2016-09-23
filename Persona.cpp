@@ -22,6 +22,6 @@ string Persona::getID(){
 }
 string Persona::toString(){
 	stringstream ss;
-	ss<<"Nombre ":nombre<<" ID: "<<identidad<<" Edad: "<<edad;
+	ss<<"Nombre "<<nombre<<" ID: "<<identidad<<" Edad: "<<edad;
 	return ss.str();
 }

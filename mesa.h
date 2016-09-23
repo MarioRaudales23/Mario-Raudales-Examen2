@@ -15,4 +15,8 @@ class mesa{
 		Repartidor* getRepartidor();
 		Jugador* getJugador();
 		int getMesa();
+		void setMesa(int);
+		void setTipo(string);
+		void setRepartidor(Repartidor*);
+		void setJugador(Jugador*);
 };

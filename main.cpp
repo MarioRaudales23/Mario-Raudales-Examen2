@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
 	Administrador* admin = new Administrador("Juan",20,"1590",10,"Gerente General",14500.00);
 	cout<<"Nombre Admin: "<<admin->getNombre()<<" ID: "<<admin->getID();
 	vector<Persona*> personas;
-	vector<mesa> mesas;
+	vector<mesa*> mesas;
 	Persona* actual;
 	int conjuga=0,conrepa=0;
 	string nombre,id;
@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 		if (nombre == admin->getNombre() && admin->getID() == id)
 		{
 			int menu;
-			cout<<"1-Agregar Jugadores\n2-Agregar Repartidores\n3-Gestionar Mesas\n....";
+			cout<<"1-Agregar Jugadores\n2-Agregar Repartidores\n3-Gestionar Mesas\n4-salir\n....";
 			cin>>menu;
 			while(menu != 4){
 				switch(menu){
@@ -126,12 +126,185 @@ int main(int argc, char const *argv[])
 							cin>>submenu;
 							switch(submenu){
 								case 1:{
+									string tipo;
+									int numeromesa;
+									Repartidor* temre;
+									Jugador* temju;
+									int numero;
+									do
+									{
+										cout<<"1-VIP\n2-Clasica\n3-Viajero\n.....";
+										cin>>numero;
+										switch(numero){
+											case 1:{
+												tipo = "VIP";
+												break;
+											}
+											case 2:{
+												tipo = "Clasica";
+												break;
+											}
+											case 3:{
+												tipo = "Viajero";
+												break;
+											}
+										}
+									} while (numero != 1 || numero != 2 || numero!= 3);
+									cout<<"Ingrese el numero de mesa";
+									cin>>numeromesa;
+									bool correcto = true;
+									int pos;
+									do
+									{
+										for (int i = 0; i < personas.size(); ++i)
+										{
+											if (dynamic_cast<Jugador*>(personas.at(i))!=NULL)
+											{
+												Jugador* apostador = dynamic_cast<Jugador*>(personas.at(i));
+												cout<<i<<" "<<apostador->toString()<<endl;
+											}
+										}
+										cout<<"Ingrese la posicion del Jugador";
+										cin>>pos;
+										if (dynamic_cast<Jugador*>(personas.at(pos))!=NULL)
+										{
+											correcto = false;
+										}
+									} while (correcto);
+									temju = dynamic_cast<Jugador*>(personas.at(pos));
+									bool correcto2 = true;
+									int pos2;
+									do
+									{
+										for (int i = 0; i < personas.size(); ++i)
+										{
+											if (dynamic_cast<Repartidor*>(personas.at(i))!=NULL)
+											{
+												Repartidor* apostador = dynamic_cast<Repartidor*>(personas.at(i));
+												cout<<i<<" "<<apostador->toString()<<endl;
+											}
+										}
+										cout<<"Ingrese la posicion del Repartidor";
+										cin>>pos2;
+										if (dynamic_cast<Repartidor*>(personas.at(pos2))!=NULL)
+										{
+											correcto2 = false;
+										}
+									} while (correcto2);
+									temre = dynamic_cast<Repartidor*>(personas.at(pos));
+									mesas.push_back(new mesa(temre,temju,numeromesa,tipo));
 									break;
 								}
 								case 2:{
+									if (mesas.size() > 0)
+									{
+										int subbmenu;
+										int pos;
+										cout<<"1-Numero Mesa\n2-Tipo\n3-Repartidor\n4-Jugador\n....";
+										cin>>subbmenu;
+										cout<<"Ingrese la posicion: ";
+										cin>>pos;
+										if (pos < mesas.size() && pos > 0)
+										{
+											switch(subbmenu){
+												case 1:{
+													int numeromesa;
+													cout<<"Ingrese el numero de mesa";
+													cin>>numeromesa;
+													mesas.at(pos)->setMesa(numeromesa);
+													break;
+												}
+												case 2:{
+													int numero;
+													string tipo;
+													do
+													{
+														cout<<"1-VIP\n2-Clasica\n3-Viajero\n.....";
+														cin>>numero;
+														switch(numero){
+															case 1:{
+																tipo = "VIP";
+																break;
+															}
+															case 2:{
+																tipo = "Clasica";
+																break;
+															}
+															case 3:{
+																tipo = "Viajero";
+																break;
+															}
+														}
+													} while (numero != 1 || numero != 2 || numero!= 3);
+													mesas.at(pos)->setTipo(tipo);
+													break;
+												}
+												case 3:{
+													Repartidor* temre;
+													bool correcto2 = true;
+													int pos2;
+													do
+													{
+														for (int i = 0; i < personas.size(); ++i)
+														{
+															if (dynamic_cast<Repartidor*>(personas.at(i))!=NULL)
+															{
+																Repartidor* apostador = dynamic_cast<Repartidor*>(personas.at(i));
+																cout<<i<<" "<<apostador->toString()<<endl;
+															}
+														}
+														cout<<"Ingrese la posicion del Repartidor";
+														cin>>pos2;
+														if (dynamic_cast<Repartidor*>(personas.at(pos2))!=NULL)
+														{
+															correcto2 = false;
+														}
+													} while (correcto2);
+													temre = dynamic_cast<Repartidor*>(personas.at(pos));
+													mesas.at(pos)->setRepartidor(temre);
+													break;
+												}
+												case 4:{
+													Jugador* temju;
+													bool correcto = true;
+													int pos;
+													do
+													{
+														for (int i = 0; i < personas.size(); ++i)
+														{
+															if (dynamic_cast<Jugador*>(personas.at(i))!=NULL)
+															{
+																Jugador* apostador = dynamic_cast<Jugador*>(personas.at(i));
+																cout<<i<<" "<<apostador->toString()<<endl;
+															}
+														}
+														cout<<"Ingrese la posicion del Jugador";
+														cin>>pos;
+														if (dynamic_cast<Jugador*>(personas.at(pos))!=NULL)
+														{
+															correcto = false;
+														}
+													} while (correcto);
+													temju = dynamic_cast<Jugador*>(personas.at(pos));
+													mesas.at(pos)->setJugador(temju);
+													break;
+												}
+											}
+										}
+									}
 									break;
 								}
 								case 3:{
+									int pos;
+									if (mesas.size() > 0)
+									{
+										cout<<"Ingrese la posicion: ";
+										cin>>pos;
+										if (pos < mesas.size() && pos > 0)
+										{
+											mesas.erase(mesas.begin() +pos);
+										}
+									}
 									break;
 								}
 							}

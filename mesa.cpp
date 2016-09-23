@@ -26,3 +26,15 @@ Jugador* mesa::getJugador(){
 int mesa::getMesa(){
 	return nummesa;
 }
+void mesa::setMesa(int mes){
+	nummesa =mes;
+}
+void mesa::setTipo(string mes){
+	tipo =mes;
+}
+void mesa::setRepartidor(Repartidor* mes){
+	repa =mes;
+}
+void mesa::setJugador(Jugador* mes){
+	juga =mes;
+}
