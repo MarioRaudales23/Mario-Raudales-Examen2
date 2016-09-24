@@ -40,16 +40,11 @@ int main(int argc, char const *argv[])
 					vector<carta*> jugar;
 					vector<carta*> repar;
 					mesa* actual;
-					for (int i = 0; i < mesas.size(); ++i)
-					{
-						if (mesas.at(i)->getJugador()->getNombre()==nombre && mesas.at(i)->getJugador()->getID()==id)
-						{
-							actual = mesas.at(i);
-							entra = true;
-						}
-					}
+					cout<<"Hola1";
+					cout<<"La simulacion entra pero tira core generado";
 					if (entra)
 					{
+						cout<<"Hola3";
 						Repartidor* temre = actual->getRepartidor();
 						Jugador* temju = actual->getJugador();
 						baraja* baraja = temre->getBaraja();
@@ -221,9 +216,9 @@ int main(int argc, char const *argv[])
 		if (nombre == admin->getNombre() && admin->getID() == id)
 		{
 			int menu;
-			cout<<"1-Agregar Jugadores\n2-Agregar Repartidores\n3-Gestionar Mesas\n4-salir\n....";
-			cin>>menu;
 			while(menu != 4){
+				cout<<"1-Agregar Jugadores\n2-Agregar Repartidores\n3-Gestionar Mesas\n4-salir\n....";
+				cin>>menu;
 				switch(menu){
 					case 1:{
 						string nom;
@@ -294,7 +289,7 @@ int main(int argc, char const *argv[])
 									break;
 								}
 							}
-						} while (numero != 1 || numero != 2 || numero!= 3);
+						} while (numero != 1 && numero != 2 && numero!= 3);
 						do
 						{
 							cout<<"Ingrese el dinero que le dio el casino: ";
@@ -335,7 +330,7 @@ int main(int argc, char const *argv[])
 												break;
 											}
 										}
-									} while (numero != 1 || numero != 2 || numero!= 3);
+									} while (numero != 1 && numero != 2 && numero!= 3);
 									cout<<"Ingrese el numero de mesa";
 									cin>>numeromesa;
 									bool correcto = true;
