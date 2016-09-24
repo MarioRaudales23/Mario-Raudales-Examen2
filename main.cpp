@@ -55,6 +55,15 @@ int main(int argc, char const *argv[])
 						baraja* baraja = temre->getBaraja();
 						int valorj,valorr;
 						int tama = 52;
+						int apuesta;
+						double dineroj,dineror;
+						dineror = temre->getDinero();
+						dineroj = temju->getMonto();
+						do
+						{
+							cout<<"Ingrese su apuesta ";
+							cin>>dineroj;
+						} while (dineroj < apuesta);
 						while(continuar){
 							for (int i = 0; i < 2; ++i)
 							{
@@ -87,26 +96,90 @@ int main(int argc, char const *argv[])
 							{
 								valorj += jugar.at(i)->getValor();
 							}
+							if (valorj == 21 && valorr == 21)
+							{
+								cout<<"Ganador la Jugador";
+								apuesta -= dineroj;
+								dineroj *=2;
+								double total;
+								total = apuesta + dineroj;
+								temju->setMonto(total);
+
+							}
 							if (valorr == 21)
 							{
-								/* code */
+								cout<<"Ganador la casa";
+								apuesta -= dineroj;
+								temju->setMonto(apuesta);
 							}
 							if (valorj == 21)
 							{
-								/* code */
+								cout<<"Ganador la Jugador";
+								apuesta -= dineroj;
+								dineroj *=2;
+								double total;
+								total = apuesta + dineroj;
+								temju->setMonto(total);
 							}
 							if (valorr > 21 && valorj < 21)
 							{
-								
+								cout<<"Ganador la Jugador";
+								apuesta -= dineroj;
+								dineroj *=2;
+								double total;
+								total = apuesta + dineroj;
+								temju->setMonto(total);
 							}
 							if (valorj > 21 && valorr < 21)
 							{
-								
+								cout<<"Ganador la casa";
+								apuesta -= dineroj;
+								temju->setMonto(apuesta);
 							}
-							if (valorj == 21 && valorr == 21)
-							{
-								/* code */
+							bool quiere = true;
+							while(quiere){
+								if (valorj == 21 && valorr == 21)
+								{
+									cout<<"Ganador la Jugador";
+									apuesta -= dineroj;
+									dineroj *=2;
+									double total;
+									total = apuesta + dineroj;
+									temju->setMonto(total);
+
+								}
+								if (valorr == 21)
+								{
+									cout<<"Ganador la casa";
+									apuesta -= dineroj;
+									temju->setMonto(apuesta);
+								}
+								if (valorj == 21)
+								{
+									cout<<"Ganador la Jugador";
+									apuesta -= dineroj;
+									dineroj *=2;
+									double total;
+									total = apuesta + dineroj;
+									temju->setMonto(total);
+								}
+								if (valorr > 21 && valorj < 21)
+								{
+									cout<<"Ganador la Jugador";
+									apuesta -= dineroj;
+									dineroj *=2;
+									double total;
+									total = apuesta + dineroj;
+									temju->setMonto(total);
+								}
+								if (valorj > 21 && valorr < 21)
+								{
+									cout<<"Ganador la casa";
+									apuesta -= dineroj;
+									temju->setMonto(apuesta);
+								}
 							}
+							
 						}	
 					}
 					

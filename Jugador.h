@@ -12,5 +12,6 @@ class Jugador:public Persona{
 		Jugador(string,int,string,string,string,double);
 		~Jugador();
 		double getMonto();
+		void setMonto(double);
 		string toString();
 };
