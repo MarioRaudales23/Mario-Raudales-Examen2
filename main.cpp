@@ -203,7 +203,15 @@ int main(int argc, char const *argv[])
 									quiere = false;
 								}
 							}
-							
+							char tem;
+							cout<<"Quiere otra partida[s/n]: ";
+							cin>>tem;
+							if (tem == 's'|| tem == 'S')
+								{
+								continuar = true;
+							}else{
+								continuar = false;
+							}
 						}	
 					}
 					
