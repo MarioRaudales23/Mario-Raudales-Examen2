@@ -137,7 +137,26 @@ int main(int argc, char const *argv[])
 								temju->setMonto(apuesta);
 							}
 							bool quiere = true;
+							char quie;
 							while(quiere){
+								cout<<"Quiere otra carta[s/n]: ";
+								cin>>quie;
+								if (quie == 's'|| quie == 'S')
+								{
+									int cartatem;
+									srand (time(NULL));
+									cartatem = rand() % tama;
+									jugar.push_back(baraja->getBaraja().at(cartatem));
+									baraja->getBaraja().erase(baraja->getBaraja().begin()+cartatem);
+									tama--;
+								}else{
+									quiere = false;
+								}
+								valorj = 0;
+								for (int i = 0; i < jugar.size(); ++i)
+								{
+									valorj += jugar.at(i)->getValor();
+								}
 								if (valorj == 21 && valorr == 21)
 								{
 									cout<<"Ganador la Jugador";
@@ -146,6 +165,7 @@ int main(int argc, char const *argv[])
 									double total;
 									total = apuesta + dineroj;
 									temju->setMonto(total);
+									quiere = false;
 
 								}
 								if (valorr == 21)
@@ -153,6 +173,7 @@ int main(int argc, char const *argv[])
 									cout<<"Ganador la casa";
 									apuesta -= dineroj;
 									temju->setMonto(apuesta);
+									quiere = false;
 								}
 								if (valorj == 21)
 								{
@@ -162,6 +183,7 @@ int main(int argc, char const *argv[])
 									double total;
 									total = apuesta + dineroj;
 									temju->setMonto(total);
+									quiere = false;
 								}
 								if (valorr > 21 && valorj < 21)
 								{
@@ -171,12 +193,14 @@ int main(int argc, char const *argv[])
 									double total;
 									total = apuesta + dineroj;
 									temju->setMonto(total);
+									quiere = false;
 								}
 								if (valorj > 21 && valorr < 21)
 								{
 									cout<<"Ganador la casa";
 									apuesta -= dineroj;
 									temju->setMonto(apuesta);
+									quiere = false;
 								}
 							}
 							
